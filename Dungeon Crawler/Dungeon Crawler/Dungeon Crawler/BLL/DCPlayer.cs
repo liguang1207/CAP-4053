@@ -36,12 +36,30 @@ namespace Dungeon_Crawler.BLL
             Initialize();
         }
 
+        public DCPlayer(Vector2 aLocation, Vector2 aVelocity, Vector2 aAcceleration, String Name, ref SpriteBatch aSpriteBatch, Texture2D aAvatar)
+            : base(aLocation, aVelocity, aAcceleration, ref aSpriteBatch)
+        {
+            pName = Name;
+            pAvatar = aAvatar;
+            Initialize();
+        }
+
         public virtual void Initialize()
         {
-            pAvatar.ToString();
-            //pAvatar = Content.Load<Texture2D>("frame");
-            
-            //TODO: Load Player Avatar
+            HumanControlled = true;
         }
+
+        public virtual void Draw(ref SpriteBatch spriteBatch)
+        {
+            spriteBatch.Begin();
+
+            spriteBatch.Draw(Avatar, Location, null, Color.White, Heading,
+                    new Vector2(Avatar.Width / 2, Avatar.Height / 2), 1.0f, SpriteEffects.None, 0f);
+
+            spriteBatch.End();
+        }
+
+        public Texture2D Avatar
+        { get { return pAvatar; } }
     }
 }

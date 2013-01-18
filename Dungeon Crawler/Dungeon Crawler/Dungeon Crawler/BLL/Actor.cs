@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
 namespace Dungeon_Crawler.BLL
@@ -20,6 +21,8 @@ namespace Dungeon_Crawler.BLL
         private float pHeading;
 
         private SpriteBatch pSpriteBatch;
+
+        private Boolean bHumanControlled = false;
         #endregion
 
         #region Constructors
@@ -42,20 +45,78 @@ namespace Dungeon_Crawler.BLL
         }
         #endregion
 
-        public virtual void Update()
+        public virtual void Update(float ViewPort_Width, float ViewPort_Height)
         {
+            //Newtons I Law
+            if (pAcceleration.X > 0) pAcceleration.X -= 0.01f;
+            else if (pAcceleration.X < 0) pAcceleration.X += 0.01f;
+
+            if (pAcceleration.Y > 0) pAcceleration.Y -= 0.01f;
+            else if (pAcceleration.Y < 0) pAcceleration.Y += 0.01f;
+
             //Add Our Acceleration
             pVelocity += pAcceleration;
+
+            if(pVelocity.X > 0)
+                pVelocity.X = Math.Min(pVelocity.X, 3);
+            else if (pVelocity.X < 0)
+                pVelocity.X = Math.Max(pVelocity.X, -3);
+
+            if (pVelocity.Y > 0)
+                pVelocity.Y = Math.Min(pVelocity.Y, 3);
+            else if (pVelocity.Y < 0)
+                pVelocity.Y = Math.Max(pVelocity.Y, -3);
+
+            //Update Position
+            pLocation += pVelocity;
+
+            pLocation.X = MathHelper.Clamp(pLocation.X, 0, ViewPort_Width - 64);
+            pLocation.Y = MathHelper.Clamp(pLocation.Y, 0, ViewPort_Height - 64);
         }
+
+        public virtual void Tick(GameTime GameTime)
+        {
+            if (bHumanControlled)
+            {
+                if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.W))
+                {
+                    AddImpulse(new Vector2(0, -0.35f));
+                    Heading = 0;
+                }
+
+                if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.A))
+                {
+                    AddImpulse(new Vector2(-0.35f, 0));
+                    Heading = 4.7f;
+                }
+
+                if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.S))
+                {
+                    AddImpulse(new Vector2(0, 0.35f));
+                    Heading = 3.15f;
+                }
+
+                if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.D))
+                {
+                    AddImpulse(new Vector2(0.35f, 0));
+                    Heading = 1.55f;
+                }
+            }
+        }
+
+
 
         public virtual String GetDebugInformation()
         {
-            return "[Loc: " + pLocation.ToString() + "]";
+            return "[Loc: " + pLocation.ToString() + "]\r\n[Vel: " + pVelocity.ToString() + "]\r\n[Acc: " + pAcceleration.ToString() + "]\r\n[Hea: " + pHeading.ToString() + "]\r\n" ;
         }
 
         public virtual void AddImpulse(Vector2 aImpulse)
         {
             pAcceleration += aImpulse;
+
+            pAcceleration.X = Math.Min(pAcceleration.X, 2);
+            pAcceleration.Y = Math.Min(pAcceleration.Y, 2);
         }
 
         public virtual void TakeDamage(int aDamage)
@@ -96,21 +157,31 @@ namespace Dungeon_Crawler.BLL
         public Vector2 Location
         {
             get { return pLocation; }
+            set { pLocation = value; }
         }
 
         public Vector2 Velocity
         {
             get { return pVelocity; }
+            set { pVelocity = value; }
         }
 
         public Vector2 Acceleration
         {
             get { return pAcceleration; }
+            set { pAcceleration = value; }
         }
 
         public float Heading
         {
             get { return pHeading; }
+            set { pHeading = value; }
+        }
+
+        public Boolean HumanControlled
+        {
+            get { return bHumanControlled; }
+            set { bHumanControlled = value; }
         }
         #endregion
     }
