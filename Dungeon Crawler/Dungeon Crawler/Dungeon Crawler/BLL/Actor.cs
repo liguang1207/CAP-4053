@@ -58,14 +58,14 @@ namespace Dungeon_Crawler.BLL
             pVelocity += pAcceleration;
 
             if(pVelocity.X > 0)
-                pVelocity.X = Math.Min(pVelocity.X, 3);
+                pVelocity.X = Math.Min(pVelocity.X, 2);
             else if (pVelocity.X < 0)
-                pVelocity.X = Math.Max(pVelocity.X, -3);
+                pVelocity.X = Math.Max(pVelocity.X, -2);
 
             if (pVelocity.Y > 0)
-                pVelocity.Y = Math.Min(pVelocity.Y, 3);
+                pVelocity.Y = Math.Min(pVelocity.Y, 2);
             else if (pVelocity.Y < 0)
-                pVelocity.Y = Math.Max(pVelocity.Y, -3);
+                pVelocity.Y = Math.Max(pVelocity.Y, -2);
 
             //Update Position
             pLocation += pVelocity;
@@ -76,29 +76,32 @@ namespace Dungeon_Crawler.BLL
 
         public virtual void Tick(GameTime GameTime)
         {
+            Velocity = new Vector2(0, 0);
+            Acceleration = new Vector2(0, 0);
+
             if (bHumanControlled)
             {
                 if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.W))
                 {
-                    AddImpulse(new Vector2(0, -0.35f));
+                    AddImpulse(new Vector2(0, -2f));
                     Heading = 0;
                 }
 
                 if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.A))
                 {
-                    AddImpulse(new Vector2(-0.35f, 0));
+                    AddImpulse(new Vector2(-2f, 0));
                     Heading = 4.7f;
                 }
 
                 if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.S))
                 {
-                    AddImpulse(new Vector2(0, 0.35f));
+                    AddImpulse(new Vector2(0, 2f));
                     Heading = 3.15f;
                 }
 
                 if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.D))
                 {
-                    AddImpulse(new Vector2(0.35f, 0));
+                    AddImpulse(new Vector2(2f, 0));
                     Heading = 1.55f;
                 }
             }
@@ -115,8 +118,8 @@ namespace Dungeon_Crawler.BLL
         {
             pAcceleration += aImpulse;
 
-            pAcceleration.X = Math.Min(pAcceleration.X, 2);
-            pAcceleration.Y = Math.Min(pAcceleration.Y, 2);
+            pAcceleration.X = Math.Min(pAcceleration.X, 1);
+            pAcceleration.Y = Math.Min(pAcceleration.Y, 1);
         }
 
         public virtual void TakeDamage(int aDamage)

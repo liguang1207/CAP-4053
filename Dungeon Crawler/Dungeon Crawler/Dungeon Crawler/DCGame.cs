@@ -94,6 +94,12 @@ namespace Dungeon_Crawler
             
             Player.Tick(gameTime);
 
+            for (int i = 0; i < Actors.Count; i++)
+            {
+                DCPlayer P = Actors[i] as DCPlayer;
+                P.Tick(gameTime);
+            }
+
 
             if (DateTime.Now.Subtract(KeyboardDelay).TotalSeconds > 1.5)
             {
@@ -149,7 +155,7 @@ namespace Dungeon_Crawler
             //Game Drawing
             spriteBatch.Begin();
 
-            spriteBatch.DrawString(calibri, Player.GetDebugInformation(), new Vector2(0, 0), Color.Black);
+            spriteBatch.DrawString(calibri, Player.GetDebugInformation(), new Vector2(0, 0), Color.Black, 0, new Vector2(0,0), 0.4f, SpriteEffects.None, 1);
 
             spriteBatch.End();
 
