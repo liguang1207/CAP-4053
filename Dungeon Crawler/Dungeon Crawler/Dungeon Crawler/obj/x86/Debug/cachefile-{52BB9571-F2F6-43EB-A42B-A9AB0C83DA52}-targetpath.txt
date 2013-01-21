@@ -1,3 +1,0 @@
-Content\Player.xnb
-Content\PericlesSpriteFont.xnb
-Content\Enemy.xnb
