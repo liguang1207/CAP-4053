@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\Actor.cs" />
+    <Compile Include="BLL\ActorMover.cs" />
     <Compile Include="BLL\AIController.cs" />
     <Compile Include="BLL\BlockingActor.cs" />
     <Compile Include="BLL\ControllableActor.cs" />

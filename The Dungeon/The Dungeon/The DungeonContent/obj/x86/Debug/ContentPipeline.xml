@@ -7,17 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>c:\users\chris burkhart\documents\visual studio 2010\Projects\The Dungeon\The Dungeon\The Dungeon\bin\x86\Debug\Content\Player.xnb</Output>
+      <Output>C:\Users\Chris Burkhart\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The Dungeon\bin\x86\Debug\Content\Player.xnb</Output>
       <Time>2013-01-21T08:17:28.5647362-05:00</Time>
-    </Item>
-    <Item>
-      <Source>Debug Font.spritefont</Source>
-      <Name>Debug Font</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>c:\users\chris burkhart\documents\visual studio 2010\Projects\The Dungeon\The Dungeon\The Dungeon\bin\x86\Debug\Content\Debug Font.xnb</Output>
-      <Time>2013-01-21T08:53:49.5725813-05:00</Time>
     </Item>
     <Item>
       <Source>Wall.bmp</Source>
@@ -25,7 +16,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>c:\users\chris burkhart\documents\visual studio 2010\Projects\The Dungeon\The Dungeon\The Dungeon\bin\x86\Debug\Content\Wall.xnb</Output>
+      <Output>C:\Users\Chris Burkhart\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The Dungeon\bin\x86\Debug\Content\Wall.xnb</Output>
       <Time>2013-01-21T09:46:09.8831968-05:00</Time>
     </Item>
     <Item>
@@ -34,8 +25,17 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>c:\users\chris burkhart\documents\visual studio 2010\Projects\The Dungeon\The Dungeon\The Dungeon\bin\x86\Debug\Content\Enemy.xnb</Output>
+      <Output>C:\Users\Chris Burkhart\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The Dungeon\bin\x86\Debug\Content\Enemy.xnb</Output>
       <Time>2013-01-21T10:16:26.9151251-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Debug Font.spritefont</Source>
+      <Name>Debug Font</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Chris Burkhart\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The Dungeon\bin\x86\Debug\Content\Debug Font.xnb</Output>
+      <Time>2013-01-21T08:53:49.5725813-05:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -43,10 +43,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>c:\users\chris burkhart\documents\visual studio 2010\Projects\The Dungeon\The Dungeon\The DungeonContent\</RootDirectory>
-      <LoggerRootDirectory>c:\users\chris burkhart\documents\visual studio 2010\Projects\The Dungeon\The Dungeon\The Dungeon\</LoggerRootDirectory>
-      <IntermediateDirectory>c:\users\chris burkhart\documents\visual studio 2010\Projects\The Dungeon\The Dungeon\The DungeonContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>c:\users\chris burkhart\documents\visual studio 2010\Projects\The Dungeon\The Dungeon\The Dungeon\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Chris Burkhart\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The DungeonContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Chris Burkhart\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The Dungeon\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Chris Burkhart\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The DungeonContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Chris Burkhart\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The Dungeon\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

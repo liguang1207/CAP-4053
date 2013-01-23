@@ -1,1 +1,2 @@
 c:\users\chris burkhart\documents\visual studio 2010\Projects\The Dungeon\The Dungeon\The DungeonContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Chris Burkhart\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The DungeonContent\obj\x86\Debug\ResolveAssemblyReference.cache

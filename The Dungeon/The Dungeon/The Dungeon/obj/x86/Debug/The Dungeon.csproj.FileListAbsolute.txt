@@ -8,3 +8,13 @@ c:\users\chris burkhart\documents\visual studio 2010\Projects\The Dungeon\The Du
 c:\users\chris burkhart\documents\visual studio 2010\Projects\The Dungeon\The Dungeon\The Dungeon\obj\x86\Debug\The Dungeon.pdb
 c:\users\chris burkhart\documents\visual studio 2010\Projects\The Dungeon\The Dungeon\The Dungeon\bin\x86\Debug\Content\Wall.xnb
 c:\users\chris burkhart\documents\visual studio 2010\Projects\The Dungeon\The Dungeon\The Dungeon\bin\x86\Debug\Content\Enemy.xnb
+C:\Users\Chris Burkhart\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The Dungeon\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Chris Burkhart\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The Dungeon\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Chris Burkhart\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The Dungeon\obj\x86\Debug\The Dungeon.exe
+C:\Users\Chris Burkhart\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The Dungeon\obj\x86\Debug\The Dungeon.pdb
+C:\Users\Chris Burkhart\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The Dungeon\bin\x86\Debug\Content\Player.xnb
+C:\Users\Chris Burkhart\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The Dungeon\bin\x86\Debug\Content\Wall.xnb
+C:\Users\Chris Burkhart\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The Dungeon\bin\x86\Debug\Content\Enemy.xnb
+C:\Users\Chris Burkhart\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The Dungeon\bin\x86\Debug\Content\Debug Font.xnb
+C:\Users\Chris Burkhart\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The Dungeon\bin\x86\Debug\The Dungeon.exe
+C:\Users\Chris Burkhart\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The Dungeon\bin\x86\Debug\The Dungeon.pdb

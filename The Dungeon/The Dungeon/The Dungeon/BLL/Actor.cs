@@ -58,12 +58,15 @@ namespace The_Dungeon.BLL
             pCollision = aCollision;
         }
 
-        public virtual void CheckCollision(Rectangle Box)
+        public virtual Boolean CheckCollision(Rectangle Box)
         {
             if (CollisionRectangle.Intersects(Box))
             {
                 pPosition = pLastPosition;
+                return true;
             }
+
+            return false;
         }
 
 
@@ -122,8 +125,8 @@ namespace The_Dungeon.BLL
             get
             {
                 return new Rectangle(
-                    (int)pPosition.X,
-                    (int)pPosition.Y,
+                    (int)Math.Floor(pPosition.X),
+                    (int)Math.Floor(pPosition.Y),
                     pSprite.Width,
                     pSprite.Height);
             }

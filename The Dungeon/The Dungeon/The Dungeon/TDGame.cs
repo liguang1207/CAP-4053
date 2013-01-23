@@ -22,12 +22,13 @@ namespace The_Dungeon
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        List<Actor> WorldActors = new List<Actor>();
+        private List<Actor> WorldActors = new List<Actor>();
 
         //Some Content
+        ActorMover AM = null;
         SpriteFont DebugFont;
-
         Boolean bDebug = true;
+        DateTime Delay = DateTime.Now;
 
         public TDGame()
         {
@@ -44,6 +45,8 @@ namespace The_Dungeon
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            
+
 
             base.Initialize();
         }
@@ -65,38 +68,16 @@ namespace The_Dungeon
             Player.ToggleDebug(bDebug);
             WorldActors.Add(Player);
             
-
-            //Walls
-            Texture2D WallTexture = Content.Load<Texture2D>("Wall");
-            BlockingActor Wall = new BlockingActor(WallTexture, new Rectangle(0, 0, WallTexture.Width, WallTexture.Height), Color.SlateGray);
-            Wall.Position = new Vector2(40, 40);
-            Wall.ToggleDebug(bDebug);
-            WorldActors.Add(Wall);
-
-            Wall = new BlockingActor(WallTexture, new Rectangle(0, 0, WallTexture.Width, WallTexture.Height), Color.SlateGray);
-            Wall.Position = new Vector2(70, 90);
-            Wall.Rotation = 7.5f;
-            Wall.ToggleDebug(bDebug);
-            WorldActors.Add(Wall);
-
-            //Enemies
-            Texture2D EnemyTexture = Content.Load<Texture2D>("Enemy");
-            ControllableActor Enemy = new ControllableActor(EnemyTexture, new Rectangle(0, 0, EnemyTexture.Width, EnemyTexture.Height), Color.SlateGray);
-            Enemy.Position = new Vector2(100, 100);
-            Enemy.ToggleDebug(bDebug);
-            Enemy.SetController(null);
-            WorldActors.Add(Enemy);
-
-            Enemy = new ControllableActor(EnemyTexture, new Rectangle(0, 0, EnemyTexture.Width, EnemyTexture.Height), Color.SlateGray);
-            Enemy.Position = new Vector2(100, 200);
-            Enemy.ToggleDebug(bDebug);
-            Enemy.SetController(null);
-            WorldActors.Add(Enemy);
-
-
             //Debug Font
             DebugFont = Content.Load<SpriteFont>("Debug Font");
+
+            if (bDebug)
+            {
+                AM = new ActorMover(ref WorldActors, DebugFont);
+                IsMouseVisible = true;
+            }
         }
+
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
@@ -115,9 +96,28 @@ namespace The_Dungeon
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            if (Delay < DateTime.Now)
+            {
+                if (Keyboard.GetState().IsKeyDown(Keys.W))
+                {
+                    AddWall();
+                    Delay = DateTime.Now.AddSeconds(0.5);
+                }
+                else if (Keyboard.GetState().IsKeyDown(Keys.E))
+                {
+                    AddEnemy();
+                    Delay = DateTime.Now.AddSeconds(0.5);
+                }
+            }
+
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
+
+            if (AM != null)
+            {
+                AM.Update();
+            }
 
             // TODO: Add your update logic here
             foreach (Actor A in WorldActors)
@@ -150,6 +150,11 @@ namespace The_Dungeon
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.SlateGray);
+
+            if (AM != null)
+            {
+                AM.Draw(ref spriteBatch);
+            }
             
             // TODO: Add your drawing code here
             foreach (Actor A in WorldActors)
@@ -161,6 +166,28 @@ namespace The_Dungeon
             }
 
             base.Draw(gameTime);
+        }
+
+
+
+
+        protected void AddWall()
+        {
+            Texture2D WallTexture = Content.Load<Texture2D>("Wall");
+            BlockingActor Wall = new BlockingActor(WallTexture, new Rectangle(0, 0, WallTexture.Width, WallTexture.Height), Color.SlateGray);
+            Wall.Position = new Vector2(40, 40);
+            Wall.ToggleDebug(bDebug);
+            WorldActors.Add(Wall);
+        }
+
+        protected void AddEnemy()
+        {
+            Texture2D EnemyTexture = Content.Load<Texture2D>("Enemy");
+            ControllableActor Enemy = new ControllableActor(EnemyTexture, new Rectangle(0, 0, EnemyTexture.Width, EnemyTexture.Height), Color.SlateGray);
+            Enemy.Position = new Vector2(100, 100);
+            Enemy.ToggleDebug(bDebug);
+            Enemy.SetController(null);
+            WorldActors.Add(Enemy);
         }
     }
 }
