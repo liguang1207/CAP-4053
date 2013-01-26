@@ -24,9 +24,7 @@ namespace The_Dungeon.BLL
 
         public void Draw(ref SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
             spriteBatch.DrawString(DebugFont, "Current Actor: " + (Selected == null ? "None" : Selected.ToString()), new Vector2(4, 4), Color.White);
-            spriteBatch.End();
         }
 
         public void Update()

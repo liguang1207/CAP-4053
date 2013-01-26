@@ -30,6 +30,7 @@ namespace The_Dungeon.BLL
 
         //Graphic Properties
         private Texture2D pSprite;
+        private Color[] pSpriteData = null;
         private Rectangle? pSourceRectangle;
         private Color pSourceColor;
 
@@ -41,6 +42,9 @@ namespace The_Dungeon.BLL
         public Actor(Texture2D aSprite, Rectangle? aSourceRectangle, Color aSourceColor)
         {
             pSprite = aSprite;
+            pSpriteData = new Color[aSprite.Width * aSprite.Height];
+            pSprite.GetData(pSpriteData);
+
             pSourceRectangle = aSourceRectangle;
             pSourceColor = aSourceColor;
         }
@@ -48,19 +52,23 @@ namespace The_Dungeon.BLL
         public virtual void Reinitialize(Texture2D aSprite,  Rectangle? aSourceRectangle, Color aSourceColor)
         {
             pSprite = aSprite;
+            pSpriteData = new Color[aSprite.Width * aSprite.Height];
+            pSprite.GetData(pSpriteData);
+
             pSourceRectangle = aSourceRectangle;
             pSourceColor = aSourceColor;
-        }
 
+            
+        }
 
         public virtual void SetCollision(CollisionType aCollision)
         {
             pCollision = aCollision;
         }
 
-        public virtual Boolean CheckCollision(Rectangle Box)
+        public virtual Boolean CheckCollision(Actor B)
         {
-            if (CollisionRectangle.Intersects(Box))
+            if (CollisionRectangle.Intersects(B.CollisionRectangle))
             {
                 pPosition = pLastPosition;
                 return true;
@@ -75,8 +83,6 @@ namespace The_Dungeon.BLL
 
         public virtual void Draw(ref SpriteBatch SB)
         {
-            SB.Begin();
-            
             if (bDebugMode)
             {
                 //TODO: Get Debug Output
@@ -84,9 +90,6 @@ namespace The_Dungeon.BLL
             }
 
             SB.Draw(pSprite, pPosition, pSourceRectangle, pSourceColor, pRotation, new Vector2(pSprite.Width / 2, pSprite.Height / 2), 1f, SpriteEffects.None, 0);
-
-
-            SB.End();
         }
 
         public virtual void ToggleDebug(Boolean IsDebugMode)
@@ -115,6 +118,8 @@ namespace The_Dungeon.BLL
             
         }
 
+
+
         public CollisionType Collision
         {
             get { return pCollision; }
@@ -125,8 +130,8 @@ namespace The_Dungeon.BLL
             get
             {
                 return new Rectangle(
-                    (int)Math.Floor(pPosition.X),
-                    (int)Math.Floor(pPosition.Y),
+                    (int)Math.Floor(pPosition.X - (pSprite.Width / 2)),
+                    (int)Math.Floor(pPosition.Y - (pSprite.Height / 2)),
                     pSprite.Width,
                     pSprite.Height);
             }

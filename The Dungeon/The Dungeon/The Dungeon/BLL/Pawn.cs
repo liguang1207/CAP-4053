@@ -9,17 +9,22 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace The_Dungeon.BLL
 {
-    class ControllableActor : Actor
+    class Pawn : Actor
     {
         Controller pController;
-        List<object> Sensors = new List<object>();
+        Sensor pSensor = null;
 
-        public ControllableActor(Texture2D aSprite, Rectangle? aSourceRectangle, Color aSourceColor)
+        public Pawn(Texture2D aSprite, Rectangle? aSourceRectangle, Color aSourceColor)
             : base(aSprite, aSourceRectangle, aSourceColor)
         {
             pController = new Controller(this);
 
             SetCollision(Actor.CollisionType.Solid);
+        }
+
+        public void SetSensor(Sensor NewSensor)
+        {
+            pSensor = NewSensor;
         }
 
         public virtual void SetController(Controller C)
@@ -30,6 +35,14 @@ namespace The_Dungeon.BLL
         public override void Update(GameTime gameTime)
         {
             HandleInput();
+        }
+
+        public override void Draw(ref SpriteBatch SB)
+        {
+            base.Draw(ref SB);
+
+            if (pSensor != null)
+                pSensor.Draw(ref SB);
         }
 
 

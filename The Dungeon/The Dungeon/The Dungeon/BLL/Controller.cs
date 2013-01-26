@@ -10,14 +10,14 @@ namespace The_Dungeon.BLL
 {
     class Controller
     {
-        ControllableActor pActor;
+        Pawn pActor;
 
-        public Controller(ControllableActor aActor)
+        public Controller(Pawn aActor)
         {
             pActor = aActor;
         }
 
-        public virtual void SetActor(ControllableActor aActor)
+        public virtual void SetActor(Pawn aActor)
         {
             pActor = aActor;
         }

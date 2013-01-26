@@ -60,6 +60,9 @@
     <XnaCompressContent>true</XnaCompressContent>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DrawingHelper">
+      <HintPath>..\..\..\..\..\..\Downloads\DrawingHelper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
       <Private>False</Private>
     </Reference>
@@ -111,8 +114,10 @@
     <Compile Include="BLL\ActorMover.cs" />
     <Compile Include="BLL\AIController.cs" />
     <Compile Include="BLL\BlockingActor.cs" />
-    <Compile Include="BLL\ControllableActor.cs" />
+    <Compile Include="BLL\Pawn.cs" />
     <Compile Include="BLL\Controller.cs" />
+    <Compile Include="BLL\Sensor.cs" />
+    <Compile Include="BLL\WallSensor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="TDGame.cs" />

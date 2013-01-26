@@ -12,6 +12,8 @@ using Microsoft.Xna.Framework.GamerServices;
 
 using The_Dungeon.BLL;
 
+using Drawing;
+
 namespace The_Dungeon
 {
     /// <summary>
@@ -45,8 +47,8 @@ namespace The_Dungeon
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            
 
+            DrawingHelper.Initialize(GraphicsDevice);
 
             base.Initialize();
         }
@@ -63,9 +65,10 @@ namespace The_Dungeon
             // TODO: use this.Content to load your game content here
             //Player
             Texture2D PlayerTexture = Content.Load<Texture2D>("Player");
-            ControllableActor Player = new ControllableActor(PlayerTexture, new Rectangle(0, 0, PlayerTexture.Width, PlayerTexture.Height), Color.SlateGray);
+            Pawn Player = new Pawn(PlayerTexture, new Rectangle(0, 0, PlayerTexture.Width, PlayerTexture.Height), Color.SlateGray);
             Player.Position = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2);
             Player.ToggleDebug(bDebug);
+            Player.SetSensor(new WallSensor(ref WorldActors, Player));
             WorldActors.Add(Player);
             
             //Debug Font
@@ -135,7 +138,7 @@ namespace The_Dungeon
                 {
                     if (A != null && B != null && A.Collision == Actor.CollisionType.Solid && B.Collision == Actor.CollisionType.Solid && A != B)
                     {
-                        A.CheckCollision(B.CollisionRectangle);
+                        A.CheckCollision(B);
                     }
                 }
             }
@@ -150,6 +153,7 @@ namespace The_Dungeon
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.SlateGray);
+            spriteBatch.Begin();
 
             if (AM != null)
             {
@@ -162,8 +166,23 @@ namespace The_Dungeon
                 if (A != null)
                 {
                     A.Draw(ref spriteBatch);
+                    
+                    //Draw Collision Rectangle Code
+                    //if (bDebug)
+                    //{
+                    //    Texture2D rect = new Texture2D(graphics.GraphicsDevice, A.CollisionRectangle.Width, A.CollisionRectangle.Height);
+
+                    //    Color[] data = new Color[A.CollisionRectangle.Width * A.CollisionRectangle.Height];
+                    //    for (int i = 0; i < data.Length; ++i) data[i] = Color.Yellow;
+                    //    rect.SetData(data);
+
+                    //    Vector2 coor = new Vector2(A.CollisionRectangle.X, A.CollisionRectangle.Y);
+                    //    spriteBatch.Draw(rect, coor, Color.White);
+                    //}
                 }
             }
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
@@ -183,7 +202,7 @@ namespace The_Dungeon
         protected void AddEnemy()
         {
             Texture2D EnemyTexture = Content.Load<Texture2D>("Enemy");
-            ControllableActor Enemy = new ControllableActor(EnemyTexture, new Rectangle(0, 0, EnemyTexture.Width, EnemyTexture.Height), Color.SlateGray);
+            Pawn Enemy = new Pawn(EnemyTexture, new Rectangle(0, 0, EnemyTexture.Width, EnemyTexture.Height), Color.SlateGray);
             Enemy.Position = new Vector2(100, 100);
             Enemy.ToggleDebug(bDebug);
             Enemy.SetController(null);

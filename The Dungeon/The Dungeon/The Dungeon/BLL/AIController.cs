@@ -10,7 +10,7 @@ namespace The_Dungeon.BLL
 {
     class AIController : Controller
     {
-        public AIController(ref ControllableActor aActor) : base(aActor)
+        public AIController(ref Pawn aActor) : base(aActor)
         {}
 
         public override void HandleInput()
