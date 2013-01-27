@@ -22,9 +22,10 @@ namespace The_Dungeon.BLL
             SetCollision(Actor.CollisionType.Solid);
         }
 
-        public void SetSensor(Sensor NewSensor)
+        public Sensor Sensor
         {
-            pSensor = NewSensor;
+            get { return pSensor; }
+            set { pSensor = value; }
         }
 
         public virtual void SetController(Controller C)

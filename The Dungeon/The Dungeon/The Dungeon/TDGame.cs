@@ -32,6 +32,8 @@ namespace The_Dungeon
         Boolean bDebug = true;
         DateTime Delay = DateTime.Now;
 
+        Pawn pPlayer = null;
+
         public TDGame()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -65,11 +67,11 @@ namespace The_Dungeon
             // TODO: use this.Content to load your game content here
             //Player
             Texture2D PlayerTexture = Content.Load<Texture2D>("Player");
-            Pawn Player = new Pawn(PlayerTexture, new Rectangle(0, 0, PlayerTexture.Width, PlayerTexture.Height), Color.SlateGray);
-            Player.Position = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2);
-            Player.ToggleDebug(bDebug);
-            Player.SetSensor(new WallSensor(ref WorldActors, Player));
-            WorldActors.Add(Player);
+            pPlayer = new Pawn(PlayerTexture, new Rectangle(0, 0, PlayerTexture.Width, PlayerTexture.Height), Color.SlateGray);
+            pPlayer.Position = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2);
+            //pPlayer.ToggleDebug(bDebug);
+            pPlayer.Sensor = new WallSensor(ref WorldActors, pPlayer);
+            WorldActors.Add(pPlayer);
             
             //Debug Font
             DebugFont = Content.Load<SpriteFont>("Debug Font");
@@ -109,6 +111,11 @@ namespace The_Dungeon
                 else if (Keyboard.GetState().IsKeyDown(Keys.E))
                 {
                     AddEnemy();
+                    Delay = DateTime.Now.AddSeconds(0.5);
+                }
+                else if (Keyboard.GetState().IsKeyDown(Keys.T))
+                {
+                    ToggleSensor();
                     Delay = DateTime.Now.AddSeconds(0.5);
                 }
             }
@@ -195,7 +202,7 @@ namespace The_Dungeon
             Texture2D WallTexture = Content.Load<Texture2D>("Wall");
             BlockingActor Wall = new BlockingActor(WallTexture, new Rectangle(0, 0, WallTexture.Width, WallTexture.Height), Color.SlateGray);
             Wall.Position = new Vector2(40, 40);
-            Wall.ToggleDebug(bDebug);
+            //Wall.ToggleDebug(bDebug);
             WorldActors.Add(Wall);
         }
 
@@ -204,9 +211,25 @@ namespace The_Dungeon
             Texture2D EnemyTexture = Content.Load<Texture2D>("Enemy");
             Pawn Enemy = new Pawn(EnemyTexture, new Rectangle(0, 0, EnemyTexture.Width, EnemyTexture.Height), Color.SlateGray);
             Enemy.Position = new Vector2(100, 100);
-            Enemy.ToggleDebug(bDebug);
+            //Enemy.ToggleDebug(bDebug);
             Enemy.SetController(null);
             WorldActors.Add(Enemy);
+        }
+
+        private void ToggleSensor()
+        {
+            if (pPlayer.Sensor == null)
+            {
+                pPlayer.Sensor = new WallSensor(ref WorldActors, pPlayer);
+            }
+            else if (pPlayer.Sensor is WallSensor)
+            {
+                pPlayer.Sensor = new AgentSensor(ref WorldActors, pPlayer);
+            }
+            else
+            {
+                pPlayer.Sensor = new WallSensor(ref WorldActors, pPlayer);
+            }
         }
     }
 }
