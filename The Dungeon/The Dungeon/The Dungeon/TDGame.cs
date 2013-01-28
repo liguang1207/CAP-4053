@@ -146,6 +146,7 @@ namespace The_Dungeon
                     if (A != null && B != null && A.Collision == Actor.CollisionType.Solid && B.Collision == Actor.CollisionType.Solid && A != B)
                     {
                         A.CheckCollision(B);
+                        
                     }
                 }
             }

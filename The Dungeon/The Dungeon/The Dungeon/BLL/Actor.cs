@@ -24,10 +24,12 @@ namespace The_Dungeon.BLL
         private Vector2 pPosition;
         private Vector2 pLastPosition = new Vector2(0, 0);
         private Vector2 pVelocity;
+        private Vector2 distance;
+        private List<Vector2> edgeVector = new List<Vector2>();
 
         private float pRotation;
         private float pRotationalVelocity = 4f;
-
+        
         //Graphic Properties
         private Texture2D pSprite;
         private Color[] pSpriteData = null;
@@ -68,7 +70,14 @@ namespace The_Dungeon.BLL
 
         public virtual Boolean CheckCollision(Actor B)
         {
-            if (CollisionRectangle.Intersects(B.CollisionRectangle))
+
+            if ((this)is Pawn && B is Pawn&&(pSprite.Width)>Vector2.Distance((this).pPosition,B.pPosition))
+            {
+                
+                pPosition = pLastPosition;
+                return true;
+            }
+            else if (CollisionRectangle.Intersects(B.CollisionRectangle))
             {
                 pPosition = pLastPosition;
                 return true;
@@ -149,7 +158,19 @@ namespace The_Dungeon.BLL
                 if (pPosition.Y < pSprite.Height + 4) pPosition.Y = pSprite.Height + 4;
             }
         }
+        public List<Vector2> Edges
+        {
+            get
+            {
+                edgeVector[0] = new Vector2(CollisionRectangle.Left, CollisionRectangle.Top);
+                edgeVector[1] = new Vector2(CollisionRectangle.Right, CollisionRectangle.Top);
+                edgeVector[2] = new Vector2(CollisionRectangle.Right, CollisionRectangle.Bottom);
+                edgeVector[3] = new Vector2(CollisionRectangle.Left, CollisionRectangle.Bottom);
+                return edgeVector;
+            }
 
+        }
+        
         public Vector2 Velocity
         {
             get { return pVelocity; }
