@@ -29,3 +29,4 @@ C:\Users\daniel\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The Dungeon\bi
 C:\Users\daniel\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The Dungeon\bin\x86\Debug\The Dungeon.exe
 C:\Users\daniel\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The Dungeon\bin\x86\Debug\The Dungeon.pdb
 C:\Users\daniel\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The Dungeon\bin\x86\Debug\DrawingHelper.dll
+C:\Users\Chris Burkhart\Documents\GitHub\CAP-4053\The Dungeon\The Dungeon\The Dungeon\bin\x86\Debug\DrawingHelper.dll
