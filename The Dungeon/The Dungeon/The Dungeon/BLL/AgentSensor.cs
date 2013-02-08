@@ -15,8 +15,8 @@ namespace The_Dungeon.BLL
         private List<Vector2> EndPoints = new List<Vector2>();
         private const float MAX_RANGE = 64;
 
-        public AgentSensor(ref List<Actor> aWorldActors, Actor aHost)
-            : base(ref aWorldActors, aHost)
+        public AgentSensor(ref List<Actor> aWorldActors, Actor aHost, SpriteFont aDebugFont)
+            : base(ref aWorldActors, aHost, aDebugFont)
         {
 
         }
@@ -35,6 +35,7 @@ namespace The_Dungeon.BLL
                     if (Distance <= MAX_RANGE + A.CollisionRectangle.Width/2)
                     {
                         EndPoints.Add(A.Position);
+                        DebugInformation += "Enemy(" + (EndPoints.Count).ToString() + ") - " + A.Position + " , Heading: " + A.Rotation +"\r\n";
                     }
                 }
             }
